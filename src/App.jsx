@@ -1,6 +1,6 @@
-import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, NavLink, Navigate } from "react-router-dom";
-import { Star, Award, Flame, ShieldCheck, Zap, Swords, GraduationCap, Info } from "lucide-react";
+import { useState } from "react";
+import { Info, ShieldCheck, Flame, Zap, Award, Star, GraduationCap, Swords } from "lucide-react";
 
 const data = [
     { name: "Marlowww", points: 405, region: "NA" },
