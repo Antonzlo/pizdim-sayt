@@ -33,7 +33,7 @@ npm run build
 
 ## Live Demo
 
-🚀 [View Live Site](https://your-username.github.io/mctiers-clone/)
+🚀 [View Live Site](https://antonzlo.github.io/pizdim-sayt/)
 
 ## Authors
 
