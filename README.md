@@ -1,6 +1,4 @@
-# MCTIERS - Minecraft Combat Rankings
-
-🏆 A modern leaderboard website for Minecraft combat tournaments and rankings.
+# Not stolen website
 
 ## Features
 
