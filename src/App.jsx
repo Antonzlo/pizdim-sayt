@@ -6,7 +6,7 @@ const data = [
     { name: "Marlowww", points: 405, region: "NA" },
     { name: "ItzRealMe", points: 330, region: "NA" },
     { name: "Swight", points: 260, region: "NA" },
-    { name: "coldified", points: 226, region: "EU" },
+    { name: "coldified", points: 556, region: "EU" },
     { name: "Kylaz", points: 222, region: "EU" },
     { name: "BlvckWlf", points: 206, region: "EU" },
     { name: "Lurrn", points: 186, region: "EU" },
@@ -79,6 +79,43 @@ function TierInfoBox() {
     );
 }
 
+function TopThreeCards({ players }) {
+    return (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            {players.map((player, index) => {
+                const tier = getTier(player.points);
+                const colors = ["bg-gradient-to-r from-yellow-400 to-yellow-600", "bg-gradient-to-r from-blue-400 to-blue-600", "bg-gradient-to-r from-orange-400 to-orange-600"];
+                const shadows = ["shadow-yellow-500/50", "shadow-blue-500/50", "shadow-orange-500/50"];
+
+                return (
+                    <div
+                        key={player.name}
+                        className={`relative p-4 rounded-xl text-white ${colors[index]} ${shadows[index]} shadow-lg flex flex-col items-center`}
+                    >
+                        <div className="absolute top-2 left-2 text-4xl font-bold opacity-50">{index + 1}</div>
+                        {player.avatar ? (
+                            <img
+                                src={player.avatar}
+                                alt="avatar"
+                                className="w-16 h-16 rounded-full border-4 border-white mb-2"
+                            />
+                        ) : (
+                            <div className="w-16 h-16 rounded-full bg-gray-500 text-white flex items-center justify-center border-4 border-white mb-2">
+                                {player.name.charAt(0).toUpperCase()}
+                            </div>
+                        )}
+                        <div className="text-lg font-bold">{player.name}</div>
+                        <div className={`text-sm ${tier.color} flex items-center gap-1 mt-1`}>
+                            <tier.icon size={16} /> {tier.name}
+                        </div>
+                        <div className="text-sm text-gray-200 mt-1">{player.points} points</div>
+                    </div>
+                );
+            })}
+        </div>
+    );
+}
+
 function Table({ onInfoClick }) {
     const [sortKey, setSortKey] = useState("points");
     const [sortAsc, setSortAsc] = useState(false);
@@ -89,19 +126,30 @@ function Table({ onInfoClick }) {
     const sortedData = [...filtered].sort((a, b) => {
         const valA = a[sortKey];
         const valB = b[sortKey];
+        if (sortKey === "region") {
+            return sortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+        }
         return sortAsc ? valA - valB : valB - valA;
     });
 
     const handleSort = (key) => {
-        if (sortKey === key) setSortAsc(!sortAsc);
-        else {
+        if (sortKey === key) {
+            setSortAsc(!sortAsc);
+        } else {
             setSortKey(key);
             setSortAsc(true);
         }
     };
 
+    const renderSortIndicator = (key) => {
+        if (sortKey === key) {
+            return sortAsc ? "↑" : "↓";
+        }
+        return "";
+    };
+
     return (
-        <div className="max-w-4xl mx-auto mt-8">
+        <div className="max-w-6xl mx-auto mt-6">
             <div className="bg-[#1e1e2f] rounded-xl overflow-hidden shadow-lg">
                 <div className="px-6 py-4 border-b border-gray-700 flex flex-col md:flex-row md:justify-between md:items-center gap-2">
                     <h2 className="text-lg font-semibold text-white">Player Rankings</h2>
@@ -117,34 +165,49 @@ function Table({ onInfoClick }) {
                         </button>
                     </div>
                 </div>
+                <TopThreeCards players={sortedData.slice(0, 3)} />
                 <table className="w-full text-sm text-left text-gray-300">
                     <thead className="text-xs uppercase bg-[#2a2a40] text-gray-400">
                         <tr>
-                            <th className="px-6 py-3">#</th>
-                            <th className="px-6 py-3 cursor-pointer" onClick={() => handleSort("name")}>
-                                Player
+                            <th className="px-4 py-2 text-left">#</th>
+                            <th className="px-4 py-2 text-left cursor-pointer" onClick={() => handleSort("name")}>
+                                Player {renderSortIndicator("name")}
                             </th>
-                            <th className="px-6 py-3">Tier</th>
-                            <th className="px-6 py-3 cursor-pointer" onClick={() => handleSort("points")}>
-                                Points {sortKey === "points" ? (sortAsc ? "↑" : "↓") : ""}
+                            <th className="px-4 py-2 text-left cursor-pointer" onClick={() => handleSort("points")}>
+                                Points {renderSortIndicator("points")}
                             </th>
-                            <th className="px-6 py-3 cursor-pointer" onClick={() => handleSort("region")}>
-                                Region
+                            <th className="px-4 py-2 text-left cursor-pointer" onClick={() => handleSort("region")}>
+                                Region {renderSortIndicator("region")}
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        {sortedData.map((p, i) => {
+                        {sortedData.map((p) => {
                             const tier = getTier(p.points);
                             return (
-                                <tr key={i} className="bg-[#26263d] border-b border-gray-700 hover:bg-[#2f2f48]">
-                                    <td className="px-6 py-3 font-bold text-yellow-400">{i + 1}.</td>
-                                    <td className="px-6 py-3 font-semibold text-white">{p.name}</td>
-                                    <td className={`px-6 py-3 flex items-center gap-1 ${tier.color}`}>
-                                        <tier.icon size={16} /> {tier.name}
+                                <tr key={p.name} className="bg-[#26263d] border-b border-gray-700 hover:bg-[#2f2f48]">
+                                    <td className="px-4 py-2 font-bold text-yellow-400">{sortedData.indexOf(p) + 1}.</td>
+                                    <td className="px-4 py-2 font-semibold text-white flex items-center gap-2">
+                                        <img
+                                            src={`https://mctiers.com/avatars/${p.name.toLowerCase()}.png`}
+                                            alt="avatar"
+                                            className="w-6 h-6 rounded-full"
+                                            onError={(e) => {
+                                                e.target.style.display = "none";
+                                                const parent = e.target.parentNode;
+                                                const placeholder = document.createElement("div");
+                                                placeholder.textContent = p.name.charAt(0).toUpperCase();
+                                                placeholder.className = "w-6 h-6 rounded-full bg-gray-500 text-white flex items-center justify-center";
+                                                parent.appendChild(placeholder);
+                                            }}
+                                        />
+                                        {p.name}
                                     </td>
-                                    <td className="px-6 py-3 text-green-400">{p.points}</td>
-                                    <td className="px-6 py-3">
+                                    <td className={`px-4 py-2 flex items-center gap-1 ${tier.color}`}>
+                                        <tier.icon size={14} /> {tier.name}
+                                    </td>
+                                    <td className="px-4 py-2 text-green-400">{p.points}</td>
+                                    <td className="px-4 py-2">
                                         <span className={`px-2 py-1 rounded text-xs font-bold ${p.region === "NA" ? "bg-red-500" : "bg-green-600"}`}>{p.region}</span>
                                     </td>
                                 </tr>
@@ -158,12 +221,25 @@ function Table({ onInfoClick }) {
 }
 
 function Navigation() {
-    const tabs = ["Overall", "LTMs", "Vanilla", "UHC", "Pot", "NethOP", "SMP", "Sword", "Axe", "Mace"];
+    const tabs = [
+        { name: "Overall", icon: "🏆" },
+        { name: "LTMs", icon: "⚔️" },
+        { name: "Vanilla", icon: "🔮" },
+        { name: "UHC", icon: "❤️" },
+        { name: "Pot", icon: "🧪" },
+        { name: "NethOP", icon: "👾" },
+        { name: "SMP", icon: "🌍" },
+        { name: "Sword", icon: "🗡️" },
+        { name: "Axe", icon: "🪓" },
+        { name: "Mace", icon: "🔨" },
+    ];
+
     return (
-        <div className="flex overflow-x-auto gap-4 mt-6 px-6">
-            {tabs.map((tab, i) => (
-                <div key={i} className="text-white whitespace-nowrap px-4 py-2 rounded-full bg-[#2a2a40] hover:bg-[#3a3a50] cursor-pointer">
-                    {tab}
+        <div className="flex overflow-x-auto gap-2 mt-4 px-4">
+            {tabs.map((tab) => (
+                <div key={tab.name} className="text-white whitespace-nowrap px-3 py-1 rounded-full bg-[#2a2a40] hover:bg-[#3a3a50] cursor-pointer flex items-center gap-1 text-sm">
+                    <span>{tab.icon}</span>
+                    {tab.name}
                 </div>
             ))}
         </div>
@@ -179,9 +255,7 @@ function Header() {
                     <NavLink to="/" className={({ isActive }) => (isActive ? "text-white font-bold" : "")}>
                         Rankings
                     </NavLink>
-                    <a href="#" className="hover:text-white">
-                        Discords
-                    </a>
+                    <button className="hover:text-white">Discords</button>
                 </nav>
             </div>
         </header>
