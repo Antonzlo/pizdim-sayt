@@ -36,6 +36,118 @@ const data = [
     { name: "Spifey", points: 8, region: "OCE" },
 ];
 
+const categoryData = {
+    "Overall": data,
+    "LTMs": [
+        { name: "Dream", points: 612, region: "NA" },
+        { name: "Technoblade", points: 589, region: "NA" },
+        { name: "Quackity", points: 456, region: "NA" },
+        { name: "Wilbur", points: 387, region: "EU" },
+        { name: "Tommy", points: 298, region: "EU" },
+        { name: "Tubbo", points: 276, region: "EU" },
+        { name: "Ranboo", points: 234, region: "NA" },
+        { name: "Philza", points: 198, region: "EU" },
+        { name: "Fundy", points: 167, region: "EU" },
+        { name: "Niki", points: 134, region: "EU" },
+    ],
+    "Vanilla": [
+        { name: "Illumina", points: 534, region: "NA" },
+        { name: "PeteZahHutt", points: 487, region: "NA" },
+        { name: "Fruitberries", points: 445, region: "EU" },
+        { name: "Sapnap", points: 398, region: "NA" },
+        { name: "Punz", points: 356, region: "NA" },
+        { name: "Antfrost", points: 289, region: "NA" },
+        { name: "5up", points: 234, region: "NA" },
+        { name: "CaptainSparklez", points: 198, region: "NA" },
+        { name: "Seapeekay", points: 167, region: "EU" },
+        { name: "Wisp", points: 145, region: "NA" },
+    ],
+    "UHC": [
+        { name: "Verzide", points: 623, region: "EU" },
+        { name: "Huahwi", points: 578, region: "NA" },
+        { name: "Graser10", points: 456, region: "NA" },
+        { name: "Straub", points: 398, region: "EU" },
+        { name: "Grape", points: 334, region: "NA" },
+        { name: "Kiingtong", points: 287, region: "NA" },
+        { name: "Tofuu", points: 234, region: "NA" },
+        { name: "TheCampingRusher", points: 198, region: "NA" },
+        { name: "Preston", points: 167, region: "NA" },
+        { name: "Lachlan", points: 134, region: "OCE" },
+    ],
+    "Pot": [
+        { name: "StimpyPvP", points: 634, region: "NA" },
+        { name: "Verzide", points: 589, region: "EU" },
+        { name: "Danteh", points: 456, region: "NA" },
+        { name: "Cayden", points: 398, region: "NA" },
+        { name: "Tylarzz", points: 334, region: "NA" },
+        { name: "AlonsoAG", points: 287, region: "EU" },
+        { name: "Rhynez", points: 234, region: "EU" },
+        { name: "xfarganx", points: 198, region: "EU" },
+        { name: "Sweatgod", points: 167, region: "NA" },
+        { name: "Rejects", points: 134, region: "NA" },
+    ],
+    "NethOP": [
+        { name: "xNestorio", points: 598, region: "NA" },
+        { name: "Huahwi", points: 534, region: "NA" },
+        { name: "Danteh", points: 456, region: "NA" },
+        { name: "Graser10", points: 398, region: "NA" },
+        { name: "ComboDombo", points: 334, region: "NA" },
+        { name: "Kiingtong", points: 287, region: "NA" },
+        { name: "Straub", points: 234, region: "EU" },
+        { name: "Grape", points: 198, region: "NA" },
+        { name: "Tofuu", points: 167, region: "NA" },
+        { name: "Preston", points: 134, region: "NA" },
+    ],
+    "SMP": [
+        { name: "Philza", points: 645, region: "EU" },
+        { name: "Technoblade", points: 598, region: "NA" },
+        { name: "Dream", points: 534, region: "NA" },
+        { name: "Wilbur", points: 456, region: "EU" },
+        { name: "Tommy", points: 398, region: "EU" },
+        { name: "Tubbo", points: 334, region: "EU" },
+        { name: "Ranboo", points: 287, region: "NA" },
+        { name: "Fundy", points: 234, region: "EU" },
+        { name: "Niki", points: 198, region: "EU" },
+        { name: "BadBoyHalo", points: 167, region: "NA" },
+    ],
+    "Sword": [
+        { name: "Verzide", points: 612, region: "EU" },
+        { name: "StimpyPvP", points: 567, region: "NA" },
+        { name: "Huahwi", points: 456, region: "NA" },
+        { name: "Danteh", points: 398, region: "NA" },
+        { name: "Cayden", points: 334, region: "NA" },
+        { name: "Tylarzz", points: 287, region: "NA" },
+        { name: "AlonsoAG", points: 234, region: "EU" },
+        { name: "Rhynez", points: 198, region: "EU" },
+        { name: "xfarganx", points: 167, region: "EU" },
+        { name: "Sweatgod", points: 134, region: "NA" },
+    ],
+    "Axe": [
+        { name: "Technoblade", points: 634, region: "NA" },
+        { name: "Dream", points: 578, region: "NA" },
+        { name: "Illumina", points: 456, region: "NA" },
+        { name: "Fruitberries", points: 398, region: "EU" },
+        { name: "PeteZahHutt", points: 334, region: "NA" },
+        { name: "Punz", points: 287, region: "NA" },
+        { name: "Sapnap", points: 234, region: "NA" },
+        { name: "Antfrost", points: 198, region: "NA" },
+        { name: "5up", points: 167, region: "NA" },
+        { name: "Seapeekay", points: 134, region: "EU" },
+    ],
+    "Mace": [
+        { name: "Kylaz", points: 645, region: "EU" },
+        { name: "coldified", points: 589, region: "EU" },
+        { name: "BlvckWlf", points: 456, region: "EU" },
+        { name: "Lurrn", points: 398, region: "EU" },
+        { name: "Marlowww", points: 334, region: "NA" },
+        { name: "ItzRealMe", points: 287, region: "NA" },
+        { name: "Swight", points: 234, region: "NA" },
+        { name: "xNestorio", points: 198, region: "NA" },
+        { name: "TapL", points: 167, region: "NA" },
+        { name: "Fruit", points: 134, region: "NA" },
+    ]
+};
+
 function PlayerAvatar({ playerName, size = "w-6 h-6" }) {
     const [imageError, setImageError] = useState(false);
     
@@ -190,13 +302,15 @@ function TopThreeCards({ players }) {
     );
 }
 
-function Table({ onInfoClick }) {
+function Table({ onInfoClick, activeCategory }) {
     const [sortKey, setSortKey] = useState("points");
     const [sortAsc, setSortAsc] = useState(false);
     const [search, setSearch] = useState("");
 
+    const currentData = categoryData[activeCategory] || data;
+
     const sortedData = useMemo(() => {
-        const filtered = data.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()));
+        const filtered = currentData.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()));
 
         return [...filtered].sort((a, b) => {
             const valA = a[sortKey];
@@ -206,11 +320,11 @@ function Table({ onInfoClick }) {
             }
             return sortAsc ? valA - valB : valB - valA;
         });
-    }, [search, sortKey, sortAsc]);
+    }, [search, sortKey, sortAsc, currentData]);
 
     const topThreePlayers = useMemo(() => {
-        return [...data].sort((a, b) => b.points - a.points).slice(0, 3);
-    }, []);
+        return [...currentData].sort((a, b) => b.points - a.points).slice(0, 3);
+    }, [currentData]);
 
     const handleSort = (key) => {
         if (sortKey === key) {
@@ -288,7 +402,7 @@ function Table({ onInfoClick }) {
     );
 }
 
-function Navigation() {
+function Navigation({ activeCategory, setActiveCategory }) {
     const tabs = [
         { name: "Overall", icon: "🏆" },
         { name: "LTMs", icon: "⚔️" },
@@ -305,10 +419,18 @@ function Navigation() {
     return (
         <div className="flex overflow-x-auto hide-scrollbar gap-2 mt-4 px-4">
             {tabs.map((tab) => (
-                <div key={tab.name} className="text-white whitespace-nowrap px-3 py-1 rounded-full bg-[#2a2a40] hover:bg-[#3a3a50] cursor-pointer flex items-center gap-1 text-sm">
+                <button 
+                    key={tab.name} 
+                    onClick={() => setActiveCategory(tab.name)}
+                    className={`text-white whitespace-nowrap px-3 py-1 rounded-full cursor-pointer flex items-center gap-1 text-sm transition-colors ${
+                        activeCategory === tab.name 
+                            ? "bg-yellow-400 text-black font-bold" 
+                            : "bg-[#2a2a40] hover:bg-[#3a3a50]"
+                    }`}
+                >
                     <span>{tab.icon}</span>
                     {tab.name}
-                </div>
+                </button>
             ))}
         </div>
     );
@@ -353,6 +475,7 @@ function Footer() {
 
 export default function App() {
     const [modalVisible, setModalVisible] = useState(false);
+    const [activeCategory, setActiveCategory] = useState("Overall");
 
     return (
         <Router basename={BASE_URL}>
@@ -363,8 +486,8 @@ export default function App() {
                         path="/"
                         element={
                             <>
-                                <Navigation />
-                                <Table onInfoClick={() => setModalVisible(true)} />
+                                <Navigation activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
+                                <Table onInfoClick={() => setModalVisible(true)} activeCategory={activeCategory} />
                                 <Modal visible={modalVisible} onClose={() => setModalVisible(false)} />
                             </>
                         }
