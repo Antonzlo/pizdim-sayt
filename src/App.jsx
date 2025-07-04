@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, NavLink, Navigate } from "react-router-dom";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Info, ShieldCheck, Flame, Zap, Award, Star, GraduationCap, Swords } from "lucide-react";
 import { BASE_URL } from "./config.js";
 
@@ -193,15 +193,36 @@ function getRegionColor(region) {
 }
 
 function Modal({ visible, onClose }) {
+    // Закрытие по Escape
+    useEffect(() => {
+        const handleEscape = (e) => {
+            if (e.key === 'Escape') {
+                onClose();
+            }
+        };
+        
+        if (visible) {
+            document.addEventListener('keydown', handleEscape);
+        }
+        
+        return () => {
+            document.removeEventListener('keydown', handleEscape);
+        };
+    }, [visible, onClose]);
+
     return (
         <div
             className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-300 ${
                 visible ? "bg-black bg-opacity-50 opacity-100" : "opacity-0 pointer-events-none"
-            }`}>
+            }`}
+            onClick={onClose}
+        >
             <div
                 className={`bg-[#1e1e2f] p-6 rounded-xl max-w-md w-full border border-gray-700 relative transform transition-all duration-300 ${
                     visible ? "scale-100 opacity-100" : "scale-90 opacity-0"
-                }`}>
+                }`}
+                onClick={(e) => e.stopPropagation()}
+            >
                 <button onClick={onClose} className="absolute top-2 right-2 text-gray-400 hover:text-white">
                     ✖
                 </button>
