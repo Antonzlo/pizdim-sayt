@@ -318,12 +318,21 @@ function Header() {
     return (
         <header className="bg-[#161625] py-4 shadow-md">
             <div className="max-w-6xl mx-auto px-4 flex items-center justify-between">
-                <div className="text-yellow-400 font-bold text-xl">MCTIERS</div>
+                <NavLink to="/" className="text-yellow-400 font-bold text-xl hover:text-yellow-300 transition-colors">
+                    MCTIERS
+                </NavLink>
                 <nav className="flex items-center gap-6 text-gray-300">
                     <NavLink to="/" className={({ isActive }) => (isActive ? "text-white font-bold" : "")}>
                         Rankings
                     </NavLink>
-                    <button className="hover:text-white">Discords</button>
+                    <a 
+                        href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="hover:text-white transition-colors"
+                    >
+                        Discord
+                    </a>
                 </nav>
             </div>
         </header>
