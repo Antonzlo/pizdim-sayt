@@ -336,7 +336,7 @@ function Table({ onInfoClick, activeCategory }) {
         return [...filtered].sort((a, b) => {
             const valA = a[sortKey];
             const valB = b[sortKey];
-            if (sortKey === "region") {
+            if (typeof valA === "string") {
                 return sortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
             }
             return sortAsc ? valA - valB : valB - valA;
