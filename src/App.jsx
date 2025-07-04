@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, NavLink, Navigate } from "react-router-dom";
 import { useState, useMemo } from "react";
 import { Info, ShieldCheck, Flame, Zap, Award, Star, GraduationCap, Swords } from "lucide-react";
+import { BASE_URL } from "./config.js";
 
 const data = [
     { name: "Marlowww", points: 405, region: "NA" },
@@ -345,7 +346,7 @@ export default function App() {
     const [modalVisible, setModalVisible] = useState(false);
 
     return (
-        <Router>
+        <Router basename={BASE_URL}>
             <div className="min-h-screen bg-[#10101a] text-white">
                 <Header />
                 <Routes>
