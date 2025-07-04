@@ -303,7 +303,7 @@ function Navigation() {
     ];
 
     return (
-        <div className="flex overflow-x-auto gap-2 mt-4 px-4">
+        <div className="flex overflow-x-auto hide-scrollbar gap-2 mt-4 px-4">
             {tabs.map((tab) => (
                 <div key={tab.name} className="text-white whitespace-nowrap px-3 py-1 rounded-full bg-[#2a2a40] hover:bg-[#3a3a50] cursor-pointer flex items-center gap-1 text-sm">
                     <span>{tab.icon}</span>
